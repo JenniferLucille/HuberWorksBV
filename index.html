@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jennifer Huber — CWNE #51 | Wireless Consulting</title>
+  <meta name="description" content="Vendor-neutral wireless consulting by Jennifer Huber, CWNE #51. Advisory services, RF design, and remote wireless diagnostics for mid-market VARs.">
+
+  <!-- Google Fonts: Playfair Display (closest Extended Heavy display), DM Sans (closest clean grotesque body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Using Barlow Condensed for extended-heavy H4 feel, DM Sans for body -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       Art direction: Expert wireless consulting for mid-market VARs
+       Tone: Confident, authoritative, minimal — like a trusted senior engineer
+       Palette: Deep slate navy accent on warm neutral surfaces
+       Typography: Barlow Condensed Heavy (H4 extended display) + DM Sans (body)
+       Density: Spacious, professional
+    ============================================================ */
+
+    /* --- DESIGN TOKENS --- */
+    :root {
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+
+      --space-1:  0.25rem;
+      --space-2:  0.5rem;
+      --space-3:  0.75rem;
+      --space-4:  1rem;
+      --space-5:  1.25rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+
+      --font-display: 'Barlow Condensed', 'Impact', sans-serif;
+      --font-body:    'DM Sans', 'Helvetica Neue', sans-serif;
+
+      --color-bg:             #f6f5f1;
+      --color-surface:        #f9f8f5;
+      --color-surface-2:      #fafaf8;
+      --color-surface-offset: #eeecea;
+      --color-divider:        #dedad5;
+      --color-border:         #d0ccc6;
+
+      --color-text:           #1a1916;
+      --color-text-muted:     #6b6860;
+      --color-text-faint:     #a8a59f;
+      --color-text-inverse:   #f5f4f0;
+
+      /* Deep navy as primary — authoritative, technical */
+      --color-primary:        #1b3a5c;
+      --color-primary-hover:  #122a45;
+      --color-primary-active: #0a1d30;
+      --color-primary-light:  #e8eef5;
+
+      /* Accent: warm slate teal */
+      --color-accent:         #2e6b7a;
+      --color-accent-hover:   #1f4f5a;
+
+      --radius-sm: 0.25rem;
+      --radius-md: 0.375rem;
+      --radius-lg: 0.625rem;
+      --radius-xl: 1rem;
+      --radius-full: 9999px;
+
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      --shadow-sm: 0 1px 3px oklch(0.15 0.02 240 / 0.07);
+      --shadow-md: 0 4px 14px oklch(0.15 0.02 240 / 0.09);
+      --shadow-lg: 0 12px 32px oklch(0.15 0.02 240 / 0.13);
+
+      --content-narrow: 640px;
+      --content-default: 960px;
+      --content-wide: 1160px;
+    }
+
+    /* --- BASE RESET --- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+      scroll-padding-top: var(--space-16);
+    }
+
+    body {
+      min-height: 100dvh;
+      line-height: 1.65;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+    ul[role="list"], ol[role="list"] { list-style: none; }
+    input, button, textarea, select { font: inherit; color: inherit; }
+    h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.1; }
+    p, li { text-wrap: pretty; max-width: 72ch; }
+
+    ::selection { background: oklch(from var(--color-primary) l c h / 0.15); color: var(--color-text); }
+
+    :focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+      border-radius: var(--radius-sm);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    button { cursor: pointer; background: none; border: none; }
+
+    a, button, [role="button"], input, textarea, select {
+      transition: color var(--transition-interactive),
+                  background var(--transition-interactive),
+                  border-color var(--transition-interactive),
+                  box-shadow var(--transition-interactive),
+                  opacity var(--transition-interactive);
+    }
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+    }
+
+    /* --- LAYOUT UTILITIES --- */
+    .container {
+      max-width: var(--content-wide);
+      margin-inline: auto;
+      padding-inline: clamp(var(--space-6), 5vw, var(--space-16));
+    }
+
+    .container--narrow {
+      max-width: var(--content-narrow);
+      margin-inline: auto;
+      padding-inline: clamp(var(--space-6), 5vw, var(--space-16));
+    }
+
+    /* ============================================================
+       SKIP LINK
+    ============================================================ */
+    .skip-link {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      z-index: 100;
+      transform: translateY(-200%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    .site-header {
+      padding-block: var(--space-6);
+      border-bottom: 1px solid var(--color-divider);
+      background: var(--color-bg);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .header-logo {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+
+    .header-tagline {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-2) var(--space-5);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      border-radius: var(--radius-md);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .header-cta:hover {
+      background: var(--color-primary-hover);
+    }
+
+    .header-cta:active {
+      background: var(--color-primary-active);
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .hero {
+      padding-block: clamp(var(--space-16), 10vw, var(--space-24));
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-divider);
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(var(--space-8), 6vw, var(--space-16));
+      align-items: center;
+    }
+
+    .hero-credential {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-5);
+    }
+
+    .hero-heading {
+      font-size: var(--text-3xl);
+      font-family: var(--font-display);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      line-height: 1.0;
+      margin-bottom: var(--space-6);
+    }
+
+    .hero-heading em {
+      font-style: normal;
+      color: var(--color-primary);
+    }
+
+    .hero-body {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 48ch;
+      margin-bottom: var(--space-8);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-8);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      text-decoration: none;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      letter-spacing: 0.03em;
+      border: 2px solid var(--color-primary);
+    }
+
+    .btn-primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
+    .btn-primary:active { background: var(--color-primary-active); border-color: var(--color-primary-active); }
+
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--color-surface-offset);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,
+        oklch(0.28 0.06 240) 0%,
+        oklch(0.35 0.08 220) 50%,
+        oklch(0.30 0.05 200) 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-10);
+    }
+
+    .hero-visual-content {
+      text-align: center;
+      color: oklch(1 0 0 / 0.85);
+    }
+
+    .hero-visual-number {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: white;
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+
+    .hero-visual-label {
+      font-size: var(--text-sm);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: oklch(1 0 0 / 0.6);
+      font-weight: 500;
+    }
+
+    /* ============================================================
+       SERVICES SECTION
+    ============================================================ */
+    .services {
+      padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+      background: var(--color-surface);
+    }
+
+    .services-header {
+      margin-bottom: clamp(var(--space-10), 5vw, var(--space-16));
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-3);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      line-height: 1.05;
+      max-width: 20ch;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    .service-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: clamp(var(--space-6), 3vw, var(--space-10));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--color-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-interactive);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-number {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      color: var(--color-primary-light);
+      line-height: 1;
+      margin-bottom: var(--space-4);
+      /* Subtle background number */
+      color: oklch(from var(--color-primary) l c h / 0.1);
+      font-size: clamp(3rem, 5vw, 5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--color-text);
+      line-height: 1.05;
+      margin-bottom: var(--space-4);
+    }
+
+    .service-body {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+    }
+
+    /* ============================================================
+       CONTACT SECTION
+    ============================================================ */
+    .contact {
+      padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+      background: var(--color-bg);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(var(--space-10), 6vw, var(--space-20));
+      align-items: start;
+    }
+
+    .contact-intro {
+      position: sticky;
+      top: calc(var(--space-16) + var(--space-6));
+    }
+
+    .contact-heading {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      line-height: 1.0;
+      margin-bottom: var(--space-6);
+    }
+
+    .contact-body {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.75;
+      max-width: 38ch;
+    }
+
+    .contact-detail {
+      margin-top: var(--space-8);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-divider);
+    }
+
+    .contact-detail-label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-1);
+    }
+
+    .contact-detail-value {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* --- FORM --- */
+    .contact-form-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: clamp(var(--space-8), 4vw, var(--space-12));
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+    }
+
+    .form-label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    .form-required {
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: var(--text-xs);
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--color-text-faint);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px oklch(from var(--color-primary) l c h / 0.12);
+    }
+
+    .form-textarea {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    /* Checkboxes group */
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-top: var(--space-1);
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      cursor: pointer;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-2);
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      position: relative;
+      transition: background var(--transition-interactive), border-color var(--transition-interactive);
+    }
+
+    .checkbox-item input[type="checkbox"]:checked {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .checkbox-item input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 6px;
+      height: 10px;
+      border: 2px solid white;
+      border-top: none;
+      border-left: none;
+      transform: rotate(45deg);
+    }
+
+    .checkbox-item input[type="checkbox"]:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 3px;
+    }
+
+    .checkbox-label {
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    /* Select wrapper */
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '';
+      position: absolute;
+      right: var(--space-4);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--color-text-muted);
+      pointer-events: none;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      width: 100%;
+      padding: var(--space-4) var(--space-8);
+      background: var(--color-primary);
+      color: var(--color-text-inverse);
+      font-size: var(--text-base);
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      margin-top: var(--space-4);
+    }
+
+    .form-submit:hover { background: var(--color-primary-hover); }
+    .form-submit:active { background: var(--color-primary-active); }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-submit svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform var(--transition-interactive);
+    }
+
+    .form-submit:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Form messages */
+    .form-success,
+    .form-error {
+      display: none;
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      line-height: 1.6;
+      margin-top: var(--space-4);
+    }
+
+    .form-success {
+      background: oklch(0.96 0.03 145);
+      color: oklch(0.30 0.10 145);
+      border: 1px solid oklch(0.85 0.06 145);
+    }
+
+    .form-error-msg {
+      background: oklch(0.96 0.03 20);
+      color: oklch(0.35 0.12 20);
+      border: 1px solid oklch(0.85 0.06 20);
+    }
+
+    .form-field-error {
+      font-size: var(--text-xs);
+      color: oklch(0.42 0.15 20);
+      margin-top: var(--space-1);
+      display: none;
+    }
+
+    .form-input.invalid,
+    .form-textarea.invalid {
+      border-color: oklch(0.55 0.15 20);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      padding-block: var(--space-10);
+      border-top: 1px solid var(--color-divider);
+      background: var(--color-surface);
+    }
+
+    .site-footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+    }
+
+    .footer-email {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-decoration: none;
+    }
+
+    .footer-email:hover {
+      color: var(--color-primary);
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+      }
+
+      .hero .container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        order: -1;
+        max-height: 280px;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-intro {
+        position: static;
+      }
+
+      .contact-body { max-width: 100%; }
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header .container {
+        gap: var(--space-3);
+      }
+
+      .header-tagline {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-primary {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#contact" class="skip-link">Skip to contact form</a>
+
+  <!-- ============================================================
+       SITE HEADER
+  ============================================================ -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="/" class="header-brand" aria-label="HuberWorks home">
+        <!-- SVG Logo: stylized W mark in a grid — precise, technical, confident -->
+        <svg class="header-logo" viewBox="0 0 36 36" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="6" fill="#1b3a5c"/>
+          <path d="M6 10 L10 26 L14 16 L18 26 L22 16 L26 26 L30 10" 
+                stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <line x1="6" y1="10" x2="10" y2="10" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="26" y1="10" x2="30" y2="10" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span class="header-tagline">CWNE #51&ensp;·&ensp;Vendor-neutral wireless consulting</span>
+      </a>
+      <a href="#contact" class="header-cta">Work with Jennifer</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO SECTION
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-credential">CWNE #51</span>
+          <h1 class="hero-heading" id="hero-heading">
+            Vendor-neutral<br>
+            <em>wireless</em><br>
+            consulting.
+          </h1>
+          <p class="hero-body">
+            Senior RF expertise — without the overhead of a full-time hire. Jennifer brings 20+ years of hands-on wireless engineering to your most complex projects.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn-primary">Get in touch</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-visual-inner">
+            <div class="hero-visual-content">
+              <div class="hero-visual-number">#51</div>
+              <div class="hero-visual-label">Certified Wireless Network Expert</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES SECTION
+    ============================================================ -->
+    <section class="services" aria-labelledby="services-heading">
+      <div class="container">
+        <header class="services-header">
+          <span class="section-label">Services</span>
+          <h2 class="section-title" id="services-heading">What Jennifer does</h2>
+        </header>
+
+        <div class="services-grid" role="list">
+
+          <article class="service-card" role="listitem">
+            <div class="service-number" aria-hidden="true">01</div>
+            <h4 class="service-title">Advisory Services</h4>
+            <p class="service-body">
+              Senior wireless expertise on a retained basis — without the cost of a full-time hire.
+            </p>
+          </article>
+
+          <article class="service-card" role="listitem">
+            <div class="service-number" aria-hidden="true">02</div>
+            <h4 class="service-title">Wireless RF Design</h4>
+            <p class="service-body">
+              Coverage predictions you can trust. Acceptance tests that hold vendors accountable.
+            </p>
+          </article>
+
+          <article class="service-card" role="listitem">
+            <div class="service-number" aria-hidden="true">03</div>
+            <h4 class="service-title">Remote Wireless Diagnostics &amp; Troubleshooting</h4>
+            <p class="service-body">
+              Intermittent Wi-Fi problems are the hardest to diagnose. They are Jennifer's speciality.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+    ============================================================ -->
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-inner">
+
+          <!-- Intro copy -->
+          <div class="contact-intro">
+            <span class="section-label">Contact</span>
+            <h2 class="contact-heading" id="contact-heading">Let's work<br>together</h2>
+            <p class="contact-body">
+              If you're interested in working with Jennifer, complete the form with a few details about your project. She will review your message and get back to you within 48 hours.
+            </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-card">
+            <form
+              id="contactForm"
+              novalidate
+              aria-label="Contact Jennifer Huber"
+            >
+              <!-- Name Row -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName" class="form-label">
+                    First Name <span class="form-required" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    class="form-input"
+                    placeholder="Jane"
+                    required
+                    autocomplete="given-name"
+                    aria-required="true"
+                  >
+                  <span class="form-field-error" id="firstNameError" role="alert">First name is required.</span>
+                </div>
+                <div class="form-group">
+                  <label for="lastName" class="form-label">
+                    Last Name <span class="form-required" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    class="form-input"
+                    placeholder="Smith"
+                    required
+                    autocomplete="family-name"
+                    aria-required="true"
+                  >
+                  <span class="form-field-error" id="lastNameError" role="alert">Last name is required.</span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email" class="form-label">
+                  Email <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="jane@yourcompany.com"
+                  required
+                  autocomplete="email"
+                  aria-required="true"
+                >
+                <span class="form-field-error" id="emailError" role="alert">A valid email address is required.</span>
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-input"
+                  placeholder="+1 (555) 000-0000"
+                  autocomplete="tel"
+                >
+              </div>
+
+              <!-- Services -->
+              <div class="form-group">
+                <fieldset style="border:none;padding:0;margin:0;">
+                  <legend class="form-label" style="margin-bottom:var(--space-3);">What services are you interested in?</legend>
+                  <div class="checkbox-group">
+                    <label class="checkbox-item">
+                      <input type="checkbox" name="services" value="Advisory Services">
+                      <span class="checkbox-label">Advisory Services</span>
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" name="services" value="Remote Wireless Diagnostics & Troubleshooting">
+                      <span class="checkbox-label">Remote Wireless Diagnostics &amp; Troubleshooting</span>
+                    </label>
+                    <label class="checkbox-item">
+                      <input type="checkbox" name="services" value="Wireless RF Design">
+                      <span class="checkbox-label">Wireless RF Design</span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!-- Project Details -->
+              <div class="form-group">
+                <label for="projectDetails" class="form-label">
+                  Project Details <span class="form-required" aria-hidden="true">*</span>
+                </label>
+                <textarea
+                  id="projectDetails"
+                  name="projectDetails"
+                  class="form-textarea"
+                  placeholder="Tell Jennifer a bit about your project — scope, timeline, challenges you're facing…"
+                  required
+                  aria-required="true"
+                  rows="5"
+                ></textarea>
+                <span class="form-field-error" id="projectDetailsError" role="alert">Please share a few details about your project.</span>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" class="form-submit" id="submitBtn">
+                <span id="submitText">Send message</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+
+              <!-- Success message -->
+              <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+                <strong>Message sent.</strong> Thank you — Jennifer will be in touch within 48 hours.
+              </div>
+
+              <!-- Error fallback -->
+              <div class="form-error form-error-msg" id="formError" role="alert">
+                Something went wrong. Please email Jennifer directly at <a href="mailto:jennifer@huberworks.nl">jennifer@huberworks.nl</a>.
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="footer-copy">
+        &copy; <span id="footerYear"></span> Jennifer Huber · CWNE #51 · HuberWorks
+      </p>
+      <a href="mailto:jennifer@huberworks.nl" class="footer-email">jennifer@huberworks.nl</a>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // Footer year
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // ---- Form Validation & Submission ----
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+    const successMsg = document.getElementById('formSuccess');
+    const errorMsg = document.getElementById('formError');
+
+    function validateField(input, errorId) {
+      const errorEl = document.getElementById(errorId);
+      if (!input.validity.valid || !input.value.trim()) {
+        input.classList.add('invalid');
+        if (errorEl) errorEl.style.display = 'block';
+        return false;
+      } else {
+        input.classList.remove('invalid');
+        if (errorEl) errorEl.style.display = 'none';
+        return true;
+      }
+    }
+
+    // Live validation on blur
+    ['firstName', 'lastName', 'email', 'projectDetails'].forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('blur', function() {
+          validateField(el, id + 'Error');
+        });
+        el.addEventListener('input', function() {
+          if (el.classList.contains('invalid')) {
+            validateField(el, id + 'Error');
+          }
+        });
+      }
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Clear previous messages
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+
+      // Validate required fields
+      const firstName = document.getElementById('firstName');
+      const lastName = document.getElementById('lastName');
+      const email = document.getElementById('email');
+      const projectDetails = document.getElementById('projectDetails');
+
+      const v1 = validateField(firstName, 'firstNameError');
+      const v2 = validateField(lastName, 'lastNameError');
+      const v3 = validateField(email, 'emailError');
+      const v4 = validateField(projectDetails, 'projectDetailsError');
+
+      if (!v1 || !v2 || !v3 || !v4) {
+        // Focus first invalid field
+        const firstInvalid = form.querySelector('.invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      // Gather selected services
+      const checkedServices = Array.from(
+        form.querySelectorAll('input[name="services"]:checked')
+      ).map(function(cb) { return cb.value; });
+
+      // Build mailto body
+      const phone = document.getElementById('phone').value.trim();
+      const servicesLine = checkedServices.length
+        ? checkedServices.join(', ')
+        : 'Not specified';
+
+      const body = [
+        'First Name: ' + firstName.value.trim(),
+        'Last Name: ' + lastName.value.trim(),
+        'Email: ' + email.value.trim(),
+        'Phone: ' + (phone || 'Not provided'),
+        '',
+        'Services of interest: ' + servicesLine,
+        '',
+        'Project Details:',
+        projectDetails.value.trim()
+      ].join('\n');
+
+      const subject = encodeURIComponent(
+        'Consulting inquiry from ' + firstName.value.trim() + ' ' + lastName.value.trim()
+      );
+      const bodyEncoded = encodeURIComponent(body);
+      const mailtoLink = 'mailto:jennifer@huberworks.nl?subject=' + subject + '&body=' + bodyEncoded;
+
+      // Open mailto
+      const mailWindow = window.open(mailtoLink, '_blank');
+
+      // Show success feedback
+      submitBtn.disabled = true;
+      submitText.textContent = 'Message ready to send';
+      successMsg.style.display = 'block';
+      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Re-enable after delay in case user wants to re-send
+      setTimeout(function() {
+        submitBtn.disabled = false;
+        submitText.textContent = 'Send message';
+      }, 6000);
+    });
+  </script>
+
+</body>
+</html>
